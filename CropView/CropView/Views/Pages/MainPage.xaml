@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CropView"
+             x:Class="CropView.MainPage">
+
+    <Grid VerticalOptions="CenterAndExpand">
+        <Image x:Name="MainImage" 
+               Source="Capture.PNG"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"/>
+
+        <local:CropFrame x:Name="MainCropFrame"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand"
+                         HeightRequest="{Binding Source={x:Reference MainImage},  
+                                                 Path=Height}"
+                         WidthRequest="{Binding Source={Reference MainImage},
+                                                Path=Width}"/>
+        <!--#region Test view-->
+        <!--<local:PanContainer x:Name="MainPan"
+                            HeightRequest="{Binding Source={x:Reference MainImage},  
+                                                    Path=Height}"
+                            WidthRequest="{Binding Source={Reference MainImage},
+                                                   Path=Width}"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="CenterAndExpand">
+            <BoxView HeightRequest="80"
+                     WidthRequest="80"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand"
+                     Color="Green"
+                     x:Name="GreenBoxview">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GreenBoxView_Tapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+        </local:PanContainer>-->
+
+        <!--<BoxView Color="Blue"
+                 x:Name="BlueBoxView"/>
+
+        <local:PanContainer x:Name="MainPan"
+                            HeightRequest="50"
+                            WidthRequest="50"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="CenterAndExpand">
+            <BoxView HeightRequest="0"
+                     WidthRequest="0"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand"
+                     Color="Green"
+                     x:Name="GreenBoxview">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GreenBoxView_Tapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+        </local:PanContainer>-->
+        <!--#endregion-->
+
+        <StackLayout VerticalOptions="StartAndExpand"
+                     HorizontalOptions="CenterAndExpand"
+                     Margin="30">
+            <Label x:Name="ScreenSizeLabel"
+                   HorizontalOptions="CenterAndExpand"/>
+
+            <Label x:Name="ImageSizeLabel" 
+                   HorizontalOptions="CenterAndExpand"/>
+
+            <StackLayout Orientation="Horizontal">
+                <Label x:Name="Label1"
+                       TextColor="Black"/>
+                <Label x:Name="Label2"
+                       Text=" x "
+                       TextColor="Black"/>
+                <Label x:Name="Label3"
+                       TextColor="Black"/>
+            </StackLayout>
+        </StackLayout>
+
+        <Button VerticalOptions="EndAndExpand"
+                HorizontalOptions="CenterAndExpand"
+                Margin="30"
+                Text="OK"
+                Clicked="Button_Clicked"/>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,7 @@
+/.vs/CropView/v15/*.suo
+/CropView/CropView.Android/*.user
+/CropView/CropView.Android/Resources/Resource.Designer.cs
+/CropView/CropView.Android/bin/Debug
+/CropView/CropView.Android/obj/Debug
+/CropView/CropView/bin/Debug
+/CropView/CropView/obj/Debug
