@@ -4,101 +4,90 @@
              xmlns:local="clr-namespace:CropView"
              x:Class="CropView.CropFrame">
     <ContentView.Content>
-        <Grid VerticalOptions="CenterAndExpand"
-              HorizontalOptions="CenterAndExpand">
-            <BoxView x:Name="CropBoxView"
-                     Margin="5"
+        <Grid>
+            <BoxView Margin="5"
                      Color="Pink"
+                     x:Name="CropView"
+                     WidthRequest="100"
                      HeightRequest="100"
-                     WidthRequest="100"/>
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand"/>
 
             <!-- 1: Top Left Point -->
-            <Grid VerticalOptions="StartAndExpand"
-                  HorizontalOptions="StartAndExpand">
-                <BoxView x:Name="TopLeftPoint"
+            <BoxView x:Name="TopLeftPoint"
                          HeightRequest="10"
                          WidthRequest="10"
-                         VerticalOptions="CenterAndExpand"
-                         HorizontalOptions="CenterAndExpand"
+                         VerticalOptions="StartAndExpand"
+                         HorizontalOptions="StartAndExpand"
                          Color="Blue"/>
-                <local:PanContainer x:Name="TopLeftPan"
+            <local:PanContainer x:Name="TopLeftPan"
                                 HeightRequest="10"
                                 WidthRequest="10"
-                                VerticalOptions="CenterAndExpand"
-                                HorizontalOptions="CenterAndExpand">
-                    <BoxView HeightRequest="0"
+                                VerticalOptions="StartAndExpand"
+                                HorizontalOptions="StartAndExpand">
+                <BoxView HeightRequest="0"
                              WidthRequest="0"
                              Color="Green"
                              VerticalOptions="CenterAndExpand"
                              HorizontalOptions="CenterAndExpand"/>
-                </local:PanContainer>
-            </Grid>
+            </local:PanContainer>
 
             <!-- 2: Top Right Point -->
-            <Grid VerticalOptions="StartAndExpand"
-                  HorizontalOptions="EndAndExpand">
-                <BoxView x:Name="TopRightPoint"
+            <BoxView x:Name="TopRightPoint"
                          HeightRequest="10"
                          WidthRequest="10"
-                         VerticalOptions="CenterAndExpand"
-                         HorizontalOptions="CenterAndExpand"
+                         VerticalOptions="StartAndExpand"
+                         HorizontalOptions="EndAndExpand"
                          Color="Green"/>
-                <local:PanContainer x:Name="TopRightPan"
+            <local:PanContainer x:Name="TopRightPan"
                                 HeightRequest="10"
                                 WidthRequest="10"
-                                VerticalOptions="CenterAndExpand"
-                                HorizontalOptions="CenterAndExpand">
-                    <BoxView HeightRequest="0"
+                                VerticalOptions="StartAndExpand"
+                                HorizontalOptions="EndAndExpand">
+                <BoxView HeightRequest="0"
                              WidthRequest="0"
                              Color="Green"
                              VerticalOptions="CenterAndExpand"
                              HorizontalOptions="CenterAndExpand"/>
-                </local:PanContainer>
-            </Grid>
+            </local:PanContainer>
 
             <!-- 3: Bottom Left Point -->
-            <Grid VerticalOptions="EndAndExpand"
-                  HorizontalOptions="StartAndExpand">
-                <BoxView x:Name="BottomLeftPoint"
+            <BoxView x:Name="BottomLeftPoint"
                          HeightRequest="10"
                          WidthRequest="10"
-                         VerticalOptions="CenterAndExpand"
-                         HorizontalOptions="CenterAndExpand"
+                         VerticalOptions="EndAndExpand"
+                         HorizontalOptions="StartAndExpand"
                          Color="Red"/>
-                <local:PanContainer x:Name="BottomLeftPan"
+            <local:PanContainer x:Name="BottomLeftPan"
                                 HeightRequest="10"
                                 WidthRequest="10"
-                                VerticalOptions="CenterAndExpand"
-                                HorizontalOptions="CenterAndExpand">
-                    <BoxView HeightRequest="0"
+                                VerticalOptions="EndAndExpand"
+                                HorizontalOptions="StartAndExpand">
+                <BoxView HeightRequest="0"
                              WidthRequest="0"
                              Color="Green"
                              VerticalOptions="CenterAndExpand"
                              HorizontalOptions="CenterAndExpand"/>
-                </local:PanContainer>
-            </Grid>
-            
+            </local:PanContainer>
+
             <!-- 4: Bottom Right Point -->
-            <Grid VerticalOptions="EndAndExpand"
-                  HorizontalOptions="EndAndExpand">
-                <BoxView x:Name="BottomRightPoint"
+            <BoxView x:Name="BottomRightPoint"
                          HeightRequest="10"
                          WidthRequest="10"
-                         VerticalOptions="CenterAndExpand"
-                         HorizontalOptions="CenterAndExpand"
+                         VerticalOptions="EndAndExpand"
+                         HorizontalOptions="EndAndExpand"
                          Color="Yellow"/>
-                <local:PanContainer x:Name="BottomRightPan"
+            <local:PanContainer x:Name="BottomRightPan"
                                 HeightRequest="10"
                                 WidthRequest="10"
-                                VerticalOptions="CenterAndExpand"
-                                HorizontalOptions="CenterAndExpand">
-                    <BoxView HeightRequest="0"
+                                VerticalOptions="EndAndExpand"
+                                HorizontalOptions="EndAndExpand">
+                <BoxView HeightRequest="0"
                              WidthRequest="0"
                              Color="Green"
                              VerticalOptions="CenterAndExpand"
                              HorizontalOptions="CenterAndExpand"/>
-                </local:PanContainer>
-            </Grid>
+            </local:PanContainer>
         </Grid>
     </ContentView.Content>
 </ContentView>

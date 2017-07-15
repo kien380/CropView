@@ -9,8 +9,7 @@ namespace CropView
 {
     public partial class App : Application
     {
-
-        public static CropFrame CropFrame;
+        public static MainPage MainPagePage;
 
         public static float ScreenWidth;
         public static float ScreenHeight;

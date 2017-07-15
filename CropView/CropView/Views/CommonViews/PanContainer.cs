@@ -13,8 +13,16 @@ namespace CropView
         double x, y;
 
         public Corner CornerPosition { get; set; }
-        public double CoordinateX { get { return x; } }
-        public double CoordinateY { get { return y; } }
+        public double CoordinateX
+        {
+            get { return x; }
+            set { x = value; }
+        }
+        public double CoordinateY
+        {
+            get { return y; }
+            set { y = value; }
+        }
 
         public PanContainer()
         {
@@ -42,9 +50,10 @@ namespace CropView
                         {
                             Content.TranslationX = translationX;
                             Content.TranslationY = translationY;
-                            App.CropFrame.MoveCornerPoint(this.x + translationX,
-                                                          this.y + translationY, 
-                                                          this.CornerPosition);
+                            CropFrame.Current.MoveCorners(this.x + translationX,
+                                                      this.y + translationY, 
+                                                      this.CornerPosition);
+                            App.MainPagePage.SetLabelsCoordinate();
                         }
 
                         break;
@@ -61,6 +70,8 @@ namespace CropView
                         // Reset Content location
                         Content.TranslationX = 0;
                         Content.TranslationY = 0;
+
+                        App.MainPagePage.SetLabelsCoordinate();
                         break;
                 }
             }
