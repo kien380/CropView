@@ -15,7 +15,11 @@ namespace CropView
         #region VARIABLE DECLARATION
         private static CropFrame _current;
         private readonly Color WhiteTransparent = Color.FromRgba(255, 255, 255, 0.5);
-        private readonly double SkipFlag = 6969;
+        private readonly double SkipFlag = 6969d;
+        private readonly double CornerPointSize = 10d;
+
+        public readonly double CropWidth = 100d;
+        public readonly double CropHeight = 100d;
 
         public static CropFrame Current
         {
@@ -38,22 +42,61 @@ namespace CropView
             Init();
         }
 
+        #region Init
         private void Init()
         {
             CropFrame.Current = this;
-            
-            // Set pans background color
+            SetCropViewValue();
+            SetPansBackgroundColor();
+            SetPansAndPointsPosition();
+        }
+
+        private void SetCropViewValue()
+        {
+            //CropView.WidthRequest = CropWidth;
+            //CropView.HeightRequest = CropHeight;
+        }
+
+        private void SetPansBackgroundColor()
+        {
             TopLeftPan.BackgroundColor = WhiteTransparent;
             TopRightPan.BackgroundColor = WhiteTransparent;
             BottomLeftPan.BackgroundColor = WhiteTransparent;
             BottomRightPan.BackgroundColor = WhiteTransparent;
+        }
 
-            // Set pans position
+        private void SetPansAndPointsPosition()
+        {
+            double x = CropWidth / 2;
+            double y = CropHeight / 2;
+
+            // Set pan coordinate
+            TopLeftPan.CoordinateX = -x;
+            TopLeftPan.CoordinateY = -y;
+            TopRightPan.CoordinateX = x;
+            TopRightPan.CoordinateY = -y;
+            BottomLeftPan.CoordinateX = -x;
+            BottomLeftPan.CoordinateY = y;
+            BottomRightPan.CoordinateX = x;
+            BottomRightPan.CoordinateY = y;
+
+            // Translate pans & points
+            TopLeftPan.TranslateTo(-x, -y, 0);
+            TopLeftPoint.TranslateTo(-x, -y, 0);
+            TopRightPan.TranslateTo(x, -y, 0);
+            TopRightPoint.TranslateTo(x, -y, 0);
+            BottomLeftPan.TranslateTo(-x, y, 0);
+            BottomLeftPoint.TranslateTo(-x, y, 0);
+            BottomRightPan.TranslateTo(x, y, 0);
+            BottomRightPoint.TranslateTo(x, y, 0);
+
+            // Set pans position type
             TopLeftPan.CornerPosition = Corner.TopLeft;
             TopRightPan.CornerPosition = Corner.TopRight;
             BottomLeftPan.CornerPosition = Corner.BottomLeft;
             BottomRightPan.CornerPosition = Corner.BottomRight;
         }
+        #endregion
 
         #region MOVING CORNERS
         public void MoveCorners(double x, double y, Corner cornerPosition)
@@ -96,17 +139,17 @@ namespace CropView
 
         private void MoveTopLeftPoint(double x, double y)
         {
-            if (x != SkipFlag)
+            if (x != SkipFlag) TopLeftPoint.TranslationX = x;
+            if (y != SkipFlag) TopLeftPoint.TranslationY = y;
+            if(x != SkipFlag && y != SkipFlag)
             {
-                TopLeftPoint.TranslationX = x;
-                CropView.WidthRequest = CropView.Width - x;
-                CropView.TranslationX = x;
-            }
-            if (y != SkipFlag)
-            {
-                TopLeftPoint.TranslationY = y;
-                CropView.HeightRequest = CropView.Height - y;
-                CropView.TranslationY = y;
+                double posX = -(CropWidth / 2);
+                double posY = -(CropHeight / 2);
+
+                CropView.WidthRequest = CropWidth + (posX - x);
+                CropView.HeightRequest = CropHeight + (posY - y);
+                CropView.TranslationX = (x - posX)/2;
+                CropView.TranslationY = (y - posY)/2;
             }
         }
         private void MoveTopLeftPan(double x, double y)
