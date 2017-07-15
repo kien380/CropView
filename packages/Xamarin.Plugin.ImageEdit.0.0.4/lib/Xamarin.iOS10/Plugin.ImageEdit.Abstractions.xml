@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Plugin.ImageEdit.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Plugin.ImageEdit.Abstractions.IImageEdit">
+             <summary>
+             Interface for ImageEdit
+             </summary>
+            </member>
+        <member name="M:Plugin.ImageEdit.Abstractions.IImageEdit.CreateImage(System.Byte[])">
+             <summary>
+             Create editable image
+             </summary>
+             <returns>IEditableImage</returns>
+             <param name="imageArray">image byte array</param>
+            </member>
+        <member name="M:Plugin.ImageEdit.Abstractions.IImageEdit.CreateImageAsync(System.Byte[])">
+             <summary>
+             Create editable image (async)
+             </summary>
+             <returns>IEditableImage</returns>
+             <param name="imageArray">image byte array</param>
+            </member>
+        <member name="T:Plugin.ImageEdit.Abstractions.IEditableImage">
+             <summary>
+             Interface for EditableImage
+             </summary>
+            </member>
+        <member name="P:Plugin.ImageEdit.Abstractions.IEditableImage.Width">
+             <summary>
+             Image Width
+             </summary>
+            </member>
+        <member name="P:Plugin.ImageEdit.Abstractions.IEditableImage.Height">
+             <summary>
+             Image Height
+             </summary>
+            </member>
+        <member name="M:Plugin.ImageEdit.Abstractions.IEditableImage.Resize(System.Int32,System.Int32)">
+             <summary>
+             Resize 
+             </summary>
+             <returns>IEditableImage</returns>
+             <param name="width">resize width. 0 is adjust to aspect ratio.</param>
+             <param name="height">resize height. 0 is adjust to aspect ratio.</param>
+            </member>
+        <member name="M:Plugin.ImageEdit.Abstractions.IEditableImage.Crop(System.Int32,System.Int32,System.Int32,System.Int32)">
+             <summary>
+             Crop
+             </summary>
+             <returns>IEditableImage</returns>
+             <param name="x">start x</param>
+             <param name="y">start y</param>
+             <param name="width">crop width</param>
+             <param name="height">crop height</param>
+            </member>
+        <member name="M:Plugin.ImageEdit.Abstractions.IEditableImage.Rotate(System.Single)">
+             <summary>
+             Rotate
+             </summary>
+             <returns>IEditableImage</returns>
+             <param name="degree">degree(0-360)</param>
+            </member>
+        <member name="M:Plugin.ImageEdit.Abstractions.IEditableImage.ToJpeg(System.Single)">
+             <summary>
+             To Jpeg byte array
+             </summary>
+             <returns>byte[]</returns>
+             <param name="quality">quality(1-100)</param>
+            </member>
+        <member name="M:Plugin.ImageEdit.Abstractions.IEditableImage.ToPng">
+             <summary>
+             To PNG byte array
+             </summary>
+             <returns>byte[]</returns>
+            </member>
+        <member name="M:Plugin.ImageEdit.Abstractions.IEditableImage.ToArgbPixels">
+             <summary>
+             image pixels array. order by ARGB. 0xFF(A)FF(R)FF(G)FF(B)
+             </summary>
+             <returns>The ARGB pixels.</returns>
+            </member>
+    </members>
+</doc>

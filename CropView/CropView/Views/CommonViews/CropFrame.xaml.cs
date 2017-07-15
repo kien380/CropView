@@ -18,8 +18,8 @@ namespace CropView
         private readonly double SkipFlag = 6969d;
         private readonly double CornerPointSize = 10d;
 
-        public readonly double CropWidth = 100d;
-        public readonly double CropHeight = 100d;
+        private double CropWidth = 100d;
+        private double CropHeight = 100d;
 
         public static CropFrame Current
         {
@@ -137,19 +137,19 @@ namespace CropView
             }
         }
 
+        // 1. Top Left
         private void MoveTopLeftPoint(double x, double y)
         {
             if (x != SkipFlag) TopLeftPoint.TranslationX = x;
             if (y != SkipFlag) TopLeftPoint.TranslationY = y;
             if(x != SkipFlag && y != SkipFlag)
             {
-                double posX = -(CropWidth / 2);
-                double posY = -(CropHeight / 2);
-
-                CropView.WidthRequest = CropWidth + (posX - x);
-                CropView.HeightRequest = CropHeight + (posY - y);
-                CropView.TranslationX = (x - posX)/2;
-                CropView.TranslationY = (y - posY)/2;
+                var width = TopRightPan.CoordinateX - BottomLeftPan.CoordinateX;
+                var height = BottomLeftPan.CoordinateY - TopRightPan.CoordinateY;
+                CropView.WidthRequest = width;
+                CropView.HeightRequest = height;
+                CropView.TranslationX = x + width / 2;
+                CropView.TranslationY = y + height / 2;
             }
         }
         private void MoveTopLeftPan(double x, double y)
@@ -165,10 +165,21 @@ namespace CropView
                 TopLeftPan.CoordinateY = y;
             }
         }
+
+        // 2. Top Right
         private void MoveTopRightPoint(double x, double y)
         {
             if (x != SkipFlag) TopRightPoint.TranslationX = x;
             if (y != SkipFlag) TopRightPoint.TranslationY = y;
+            if (x != SkipFlag && y != SkipFlag)
+            {
+                var width = BottomRightPan.CoordinateX - TopLeftPan.CoordinateX;
+                var height = BottomRightPan.CoordinateY - TopLeftPan.CoordinateY;
+                CropView.WidthRequest = width;
+                CropView.HeightRequest = height;
+                CropView.TranslationX = x - width / 2;
+                CropView.TranslationY = y + height / 2;
+            }
         }
         private void MoveTopRightPan(double x, double y)
         {
@@ -183,10 +194,21 @@ namespace CropView
                 TopRightPan.CoordinateY = y;
             }
         }
+
+        // 3. Bottom Left
         private void MoveBottomLeftPoint(double x, double y)
         {
             if (x != SkipFlag) BottomLeftPoint.TranslationX = x;
             if (y != SkipFlag) BottomLeftPoint.TranslationY = y;
+            if (x != SkipFlag && y != SkipFlag)
+            {
+                var width = BottomRightPan.CoordinateX - TopLeftPan.CoordinateX;
+                var height = BottomRightPan.CoordinateY - TopLeftPan.CoordinateY;
+                CropView.WidthRequest = width;
+                CropView.HeightRequest = height;
+                CropView.TranslationX = x + width / 2;
+                CropView.TranslationY = y - height / 2;
+            }
         }
         private void MoveBottomLeftPan(double x, double y)
         {
@@ -201,10 +223,21 @@ namespace CropView
                 BottomLeftPan.CoordinateY = y;
             }
         }
+
+        // 4. Bottom Right
         private void MoveBottomRightPoint(double x, double y)
         {
             if (x != SkipFlag) BottomRightPoint.TranslationX = x;
             if (y != SkipFlag) BottomRightPoint.TranslationY = y;
+            if (x != SkipFlag && y != SkipFlag)
+            {
+                var width = TopRightPan.CoordinateX - BottomLeftPan.CoordinateX;
+                var height = BottomLeftPan.CoordinateY - TopRightPan.CoordinateY;
+                CropView.WidthRequest = width;
+                CropView.HeightRequest = height;
+                CropView.TranslationX = x - width / 2;
+                CropView.TranslationY = y - height / 2;
+            }
         }
         private void MoveBottomRightPan(double x, double y)
         {
@@ -217,6 +250,32 @@ namespace CropView
             {
                 BottomRightPan.TranslationY = y;
                 BottomRightPan.CoordinateY = y;
+            }
+        }
+
+        public void SetCropSize(Corner cornerPosition)
+        {
+            switch(cornerPosition)
+            {
+                case Corner.TopLeft:
+                    CropWidth = Math.Abs(TopLeftPan.CoordinateX - TopRightPan.CoordinateX);
+                    CropHeight = Math.Abs(TopLeftPan.CoordinateY - BottomLeftPan.CoordinateY);
+                    break;
+
+                case Corner.TopRight:
+                    CropWidth = Math.Abs(TopRightPan.CoordinateX - TopLeftPan.CoordinateX);
+                    CropHeight = Math.Abs(TopRightPan.CoordinateY - BottomRightPan.CoordinateY);
+                    break;
+
+                case Corner.BottomLeft: 
+                    CropWidth = Math.Abs(BottomLeftPan.CoordinateX - BottomRightPan.CoordinateX);
+                    CropHeight = Math.Abs(BottomLeftPan.CoordinateY - TopLeftPan.CoordinateY);
+                    break;
+
+                case Corner.BottomRight:
+                    CropWidth = Math.Abs(BottomRightPan.CoordinateX - BottomLeftPan.CoordinateX);
+                    CropHeight = Math.Abs(BottomRightPan.CoordinateY - TopRightPan.CoordinateY);
+                    break;
             }
         }
         #endregion
@@ -253,10 +312,5 @@ namespace CropView
             }
         }
         #endregion
-
-        public string getCropViewPosition()
-        {
-            return CropView.X + " : " + CropView.Y;
-        }
     }
 }

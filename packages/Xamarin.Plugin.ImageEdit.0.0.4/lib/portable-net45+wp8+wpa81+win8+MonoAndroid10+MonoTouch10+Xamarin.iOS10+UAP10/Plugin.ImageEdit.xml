@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Plugin.ImageEdit</name>
+    </assembly>
+    <members>
+        <member name="T:Plugin.ImageEdit.CrossImageEdit">
+             <summary>
+             Cross platform ImageEdit implemenations
+             </summary>
+            </member>
+        <member name="P:Plugin.ImageEdit.CrossImageEdit.Current">
+             <summary>
+             Current settings to use
+             </summary>
+            </member>
+    </members>
+</doc>

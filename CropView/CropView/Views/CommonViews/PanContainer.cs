@@ -26,9 +26,6 @@ namespace CropView
 
         public PanContainer()
         {
-            x = this.X;
-            y = this.Y;
-
             // Set PanGestureRecognizer.TouchPoints to control the 
             // number of touch points needed to pan
             var panGesture = new PanGestureRecognizer();
@@ -63,15 +60,16 @@ namespace CropView
                         x += Content.TranslationX;
                         y += Content.TranslationY;
 
-                        // Moving PanContainer
+                        // Move PanContainer
                         this.TranslationX = x;
                         this.TranslationY = y;
 
-                        // Reset Content location
+                        // Move Content of the PanContainer
                         Content.TranslationX = 0;
                         Content.TranslationY = 0;
 
-                        App.MainPagePage.SetLabelsCoordinate();
+                        // Set GUI
+                        CropFrame.Current.SetCropSize(this.CornerPosition);
                         break;
                 }
             }
